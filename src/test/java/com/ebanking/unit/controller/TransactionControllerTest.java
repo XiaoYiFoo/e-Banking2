@@ -170,10 +170,11 @@ class TransactionControllerTest {
         // When & Then
         mockMvc.perform(get("/api/v1/transactions/account/12345"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].id").value(testTransaction.getId()))
-                .andExpect(jsonPath("$[0].accountIban").value("12345"))
-                .andExpect(jsonPath("$[0].currency").value("MYR"))
-                .andExpect(jsonPath("$[0].amount").value(100.00));
+                .andExpect(jsonPath("$.transactions[0].accountIban").value("12345"))
+                .andExpect(jsonPath("$.transactions[0].currency").value("MYR"))
+                .andExpect(jsonPath("$.transactions[0].amount").value(100.00))
+                .andExpect(jsonPath("$.totalCredit").value(100.00))
+                .andExpect(jsonPath("$.totalDebit").value(0));
 
         verify(transactionService).getTransactionsByAccount("12345");
         verify(transactionMapper).toDto(testTransaction);
@@ -210,8 +211,10 @@ class TransactionControllerTest {
         // When & Then
         mockMvc.perform(get("/api/v1/transactions/account/12345"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$").isArray())
-                .andExpect(jsonPath("$").isEmpty());
+                .andExpect(jsonPath("$.transactions").isArray())
+                .andExpect(jsonPath("$.transactions").isEmpty())
+                .andExpect(jsonPath("$.totalDebit").value(0))
+                .andExpect(jsonPath("$.totalCredit").value(0));
 
         verify(transactionService).getTransactionsByAccount("12345");
         verify(transactionMapper, never()).toDto(any());
