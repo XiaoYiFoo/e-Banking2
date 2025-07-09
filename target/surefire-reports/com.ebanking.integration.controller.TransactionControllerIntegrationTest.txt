@@ -1,4 +1,32 @@
 -------------------------------------------------------------------------------
 Test set: com.ebanking.integration.controller.TransactionControllerIntegrationTest
 -------------------------------------------------------------------------------
-Tests run: 23, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 20.58 s -- in com.ebanking.integration.controller.TransactionControllerIntegrationTest
+Tests run: 12, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 17.63 s <<< FAILURE! -- in com.ebanking.integration.controller.TransactionControllerIntegrationTest
+com.ebanking.integration.controller.TransactionControllerIntegrationTest.shouldGetTransactionsByAccount -- Time elapsed: 0.219 s <<< FAILURE!
+java.lang.AssertionError: 
+Expected an array at JSON path "$" but found: {transactions=[{"id":"cb034d25-c362-4fa8-b7c7-3da022b05dd1","accountIban":"TEST123456","currency":"MYR","amount":100.0,"description":"Test transaction","valueDate":"2025-07-09"}], totalDebit=0, totalCredit=100.0}
+Expected: an instance of java.util.List
+     but: <{transactions=[{"id":"cb034d25-c362-4fa8-b7c7-3da022b05dd1","accountIban":"TEST123456","currency":"MYR","amount":100.0,"description":"Test transaction","valueDate":"2025-07-09"}], totalDebit=0, totalCredit=100.0}> is a java.util.LinkedHashMap
+	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)
+	at org.springframework.test.util.JsonPathExpectationsHelper.assertValueIsArray(JsonPathExpectationsHelper.java:166)
+	at org.springframework.test.web.servlet.result.JsonPathResultMatchers.lambda$isArray$12(JsonPathResultMatchers.java:226)
+	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:214)
+	at com.ebanking.integration.controller.TransactionControllerIntegrationTest.shouldGetTransactionsByAccount(TransactionControllerIntegrationTest.java:179)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+
+com.ebanking.integration.controller.TransactionControllerIntegrationTest.shouldReturnEmptyListWhenNoTransactionsFound -- Time elapsed: 0.158 s <<< FAILURE!
+java.lang.AssertionError: 
+Expected an array at JSON path "$" but found: {transactions=[], totalDebit=0, totalCredit=0}
+Expected: an instance of java.util.List
+     but: <{transactions=[], totalDebit=0, totalCredit=0}> is a java.util.LinkedHashMap
+	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)
+	at org.springframework.test.util.JsonPathExpectationsHelper.assertValueIsArray(JsonPathExpectationsHelper.java:166)
+	at org.springframework.test.web.servlet.result.JsonPathResultMatchers.lambda$isArray$12(JsonPathResultMatchers.java:226)
+	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:214)
+	at com.ebanking.integration.controller.TransactionControllerIntegrationTest.shouldReturnEmptyListWhenNoTransactionsFound(TransactionControllerIntegrationTest.java:218)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+

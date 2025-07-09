@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.ebanking.unit.service.ExchangeRateServiceTest" time="0.353" tests="13" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.ebanking.unit.exception.GlobalExceptionHandlerTest" time="0.907" tests="14" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="20"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -66,26 +66,215 @@
     <property name="CONSOLE_LOG_PATTERN" value="%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"/>
     <property name="LOGGED_APPLICATION_NAME" value="[transaction-service-test] "/>
   </properties>
-  <testcase name="convertToBaseCurrency_ShouldUseCachedRate" classname="com.ebanking.unit.service.ExchangeRateServiceTest" time="0.297"/>
-  <testcase name="convertToBaseCurrency_NullAmount_ReturnsZero" classname="com.ebanking.unit.service.ExchangeRateServiceTest" time="0.006">
-    <system-out><![CDATA[08:31:07.862 [main] WARN  c.e.service.ExchangeRateService - Invalid parameters for currency conversion: amount=null, from=USD, to=GBP
+  <testcase name="shouldHandleConstraintViolationExceptionWithNullInvalidValue" classname="com.ebanking.unit.exception.GlobalExceptionHandlerTest" time="0.609">
+    <system-out><![CDATA[08:31:06.588 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-transaction-group-2, groupId=transaction-group] Request joining group due to: group is already rebalancing
+08:31:06.589 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-transaction-group-2, groupId=transaction-group] Revoke previously assigned partitions transactions-0
+08:31:06.597 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-transaction-group-2, groupId=transaction-group] (Re-)joining group
+08:31:06.699 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-transaction-group-4, groupId=transaction-group] Successfully joined group with generation Generation{generationId=2, memberId='consumer-transaction-group-4-4bec048a-99b3-4f81-9fca-38122f1f7804', protocol='range'}
+08:31:06.699 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-transaction-group-2, groupId=transaction-group] Successfully joined group with generation Generation{generationId=2, memberId='consumer-transaction-group-2-7433c3a4-cf53-4c5e-8fa9-e3472eba02b3', protocol='range'}
+08:31:06.700 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-transaction-group-2, groupId=transaction-group] Finished assignment for group at generation 2: {consumer-transaction-group-4-4bec048a-99b3-4f81-9fca-38122f1f7804=Assignment(partitions=[]), consumer-transaction-group-2-7433c3a4-cf53-4c5e-8fa9-e3472eba02b3=Assignment(partitions=[transactions-0])}
+08:31:06.732 [main] WARN  c.e.exception.GlobalExceptionHandler - Constraint violation occurred: Validation failed
 ]]></system-out>
   </testcase>
-  <testcase name="convertToBaseCurrency_DifferentDate_UsesDifferentCacheKey" classname="com.ebanking.unit.service.ExchangeRateServiceTest" time="0.004"/>
-  <testcase name="convertToBaseCurrency_ShouldRoundToTwoDecimalPlaces" classname="com.ebanking.unit.service.ExchangeRateServiceTest" time="0.003"/>
-  <testcase name="convertToBaseCurrency_SameCurrency_ReturnsOriginalAmount" classname="com.ebanking.unit.service.ExchangeRateServiceTest" time="0.002"/>
-  <testcase name="convertToBaseCurrency_NullFromCurrency_ReturnsOriginalAmount" classname="com.ebanking.unit.service.ExchangeRateServiceTest" time="0.002">
-    <system-out><![CDATA[08:31:07.877 [main] WARN  c.e.service.ExchangeRateService - Invalid parameters for currency conversion: amount=100.00, from=null, to=GBP
+  <testcase name="shouldHandleDateTimeParseExceptionWithComplexMessage" classname="com.ebanking.unit.exception.GlobalExceptionHandlerTest" time="0.005">
+    <system-out><![CDATA[08:31:06.741 [main] WARN  c.e.exception.GlobalExceptionHandler - Date/time parsing failed: invalid-date - Text 'invalid-date' could not be parsed at index 0
 ]]></system-out>
   </testcase>
-  <testcase name="convertToBaseCurrency_VerySmallAmount_HandlesCorrectly" classname="com.ebanking.unit.service.ExchangeRateServiceTest" time="0.004"/>
-  <testcase name="convertToBaseCurrency_NegativeAmount_ReturnsNegativeConvertedAmount" classname="com.ebanking.unit.service.ExchangeRateServiceTest" time="0.002"/>
-  <testcase name="convertToBaseCurrency_LargeAmount_HandlesCorrectly" classname="com.ebanking.unit.service.ExchangeRateServiceTest" time="0.003"/>
-  <testcase name="convertToBaseCurrency_NullToCurrency_ReturnsOriginalAmount" classname="com.ebanking.unit.service.ExchangeRateServiceTest" time="0.003">
-    <system-out><![CDATA[08:31:07.894 [main] WARN  c.e.service.ExchangeRateService - Invalid parameters for currency conversion: amount=100.00, from=USD, to=null
+  <testcase name="shouldHandleMethodArgumentTypeMismatchException" classname="com.ebanking.unit.exception.GlobalExceptionHandlerTest" time="0.013">
+    <system-out><![CDATA[08:31:06.751 [main] WARN  c.e.exception.GlobalExceptionHandler - Parameter type mismatch: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Integer'; Type mismatch
 ]]></system-out>
   </testcase>
-  <testcase name="convertToBaseCurrency_CaseInsensitiveCurrency_Works" classname="com.ebanking.unit.service.ExchangeRateServiceTest" time="0.005"/>
-  <testcase name="convertToBaseCurrency_ValidConversion_ReturnsConvertedAmount" classname="com.ebanking.unit.service.ExchangeRateServiceTest" time="0.004"/>
-  <testcase name="clearCache_ShouldClearCache" classname="com.ebanking.unit.service.ExchangeRateServiceTest" time="0.004"/>
+  <testcase name="shouldHandleMethodArgumentTypeMismatchExceptionWithNullValue" classname="com.ebanking.unit.exception.GlobalExceptionHandlerTest" time="0.006">
+    <system-out><![CDATA[08:31:06.764 [main] WARN  c.e.exception.GlobalExceptionHandler - Parameter type mismatch: Failed to convert value of type 'null' to required type 'java.lang.Integer'; Type mismatch
+]]></system-out>
+  </testcase>
+  <testcase name="shouldHandleMethodArgumentNotValidException" classname="com.ebanking.unit.exception.GlobalExceptionHandlerTest" time="0.165">
+    <system-out><![CDATA[08:31:06.777 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-transaction-group-4, groupId=transaction-group] Successfully synced group in generation Generation{generationId=2, memberId='consumer-transaction-group-4-4bec048a-99b3-4f81-9fca-38122f1f7804', protocol='range'}
+08:31:06.778 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-transaction-group-4, groupId=transaction-group] Notifying assignor about the new Assignment(partitions=[])
+08:31:06.778 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-transaction-group-4, groupId=transaction-group] Adding newly assigned partitions: 
+08:31:06.781 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-transaction-group-2, groupId=transaction-group] Successfully synced group in generation Generation{generationId=2, memberId='consumer-transaction-group-2-7433c3a4-cf53-4c5e-8fa9-e3472eba02b3', protocol='range'}
+08:31:06.782 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-transaction-group-2, groupId=transaction-group] Notifying assignor about the new Assignment(partitions=[transactions-0])
+08:31:06.782 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-transaction-group-2, groupId=transaction-group] Adding newly assigned partitions: transactions-0
+08:31:06.823 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-transaction-group-2, groupId=transaction-group] Setting offset for partition transactions-0 to the committed offset FetchPosition{offset=0, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[localhost:9092 (id: 1 rack: null)], epoch=0}}
+08:31:06.931 [main] WARN  c.e.exception.GlobalExceptionHandler - Validation failed: Validation failed for argument [0] in public void com.ebanking.unit.exception.GlobalExceptionHandlerTest$TestController.testMethod(java.lang.String): 
+]]></system-out>
+  </testcase>
+  <testcase name="shouldVerifyTimestampIsSetForAllErrorResponses" classname="com.ebanking.unit.exception.GlobalExceptionHandlerTest" time="0.036">
+    <system-out><![CDATA[08:31:06.937 [main] ERROR c.e.exception.GlobalExceptionHandler - Unexpected error occurred: Test error
+java.lang.RuntimeException: Test error
+	at com.ebanking.unit.exception.GlobalExceptionHandlerTest.shouldVerifyTimestampIsSetForAllErrorResponses(GlobalExceptionHandlerTest.java:361)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:728)
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$7(TestMethodTestDescriptor.java:218)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:214)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:139)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:69)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:151)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:85)
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47)
+	at org.apache.maven.surefire.junitplatform.LazyLauncher.execute(LazyLauncher.java:56)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:184)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:148)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:122)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+]]></system-out>
+  </testcase>
+  <testcase name="shouldHandleAuthenticationException" classname="com.ebanking.unit.exception.GlobalExceptionHandlerTest" time="0.004">
+    <system-out><![CDATA[08:31:06.974 [main] WARN  c.e.exception.GlobalExceptionHandler - Authentication failed: Invalid credentials
+]]></system-out>
+  </testcase>
+  <testcase name="shouldHandleGenericException" classname="com.ebanking.unit.exception.GlobalExceptionHandlerTest" time="0.005">
+    <system-out><![CDATA[08:31:06.979 [main] ERROR c.e.exception.GlobalExceptionHandler - Unexpected error occurred: Unexpected error occurred
+java.lang.RuntimeException: Unexpected error occurred
+	at com.ebanking.unit.exception.GlobalExceptionHandlerTest.shouldHandleGenericException(GlobalExceptionHandlerTest.java:225)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:728)
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$7(TestMethodTestDescriptor.java:218)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:214)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:139)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:69)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:151)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:85)
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47)
+	at org.apache.maven.surefire.junitplatform.LazyLauncher.execute(LazyLauncher.java:56)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:184)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:148)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:122)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+]]></system-out>
+  </testcase>
+  <testcase name="shouldHandleAccessDeniedException" classname="com.ebanking.unit.exception.GlobalExceptionHandlerTest" time="0.004">
+    <system-out><![CDATA[08:31:06.986 [main] WARN  c.e.exception.GlobalExceptionHandler - Access denied: Access denied
+]]></system-out>
+  </testcase>
+  <testcase name="shouldHandleDateTimeParseException" classname="com.ebanking.unit.exception.GlobalExceptionHandlerTest" time="0.003">
+    <system-out><![CDATA[08:31:06.991 [main] WARN  c.e.exception.GlobalExceptionHandler - Date/time parsing failed: 2023-13-45 - Text '2023-13-45' could not be parsed
+]]></system-out>
+  </testcase>
+  <testcase name="shouldHandleMissingServletRequestParameterException" classname="com.ebanking.unit.exception.GlobalExceptionHandlerTest" time="0.005">
+    <system-out><![CDATA[08:31:06.996 [main] WARN  c.e.exception.GlobalExceptionHandler - Missing required parameter: amount of type BigDecimal
+]]></system-out>
+  </testcase>
+  <testcase name="shouldHandleMultipleValidationErrors" classname="com.ebanking.unit.exception.GlobalExceptionHandlerTest" time="0.023">
+    <system-out><![CDATA[08:31:07.000 [main] WARN  c.e.exception.GlobalExceptionHandler - Validation failed: Validation failed for argument [0] in public void com.ebanking.unit.exception.GlobalExceptionHandlerTest$TestController.testMethod(java.lang.String): 
+]]></system-out>
+  </testcase>
+  <testcase name="shouldHandleConstraintViolationException" classname="com.ebanking.unit.exception.GlobalExceptionHandlerTest" time="0.005">
+    <system-out><![CDATA[08:31:07.025 [main] WARN  c.e.exception.GlobalExceptionHandler - Constraint violation occurred: Validation failed
+]]></system-out>
+  </testcase>
+  <testcase name="shouldHandleEmptyValidationErrors" classname="com.ebanking.unit.exception.GlobalExceptionHandlerTest" time="0.004">
+    <system-out><![CDATA[08:31:07.029 [main] WARN  c.e.exception.GlobalExceptionHandler - Validation failed: Validation failed for argument [0] in public void com.ebanking.unit.exception.GlobalExceptionHandlerTest$TestController.testMethod(java.lang.String): 
+]]></system-out>
+  </testcase>
 </testsuite>

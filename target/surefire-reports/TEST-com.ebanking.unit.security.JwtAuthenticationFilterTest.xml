@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.ebanking.unit.service.ExchangeRateServiceTest" time="0.353" tests="13" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.ebanking.unit.security.JwtAuthenticationFilterTest" time="0.351" tests="4" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="20"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -66,26 +66,11 @@
     <property name="CONSOLE_LOG_PATTERN" value="%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"/>
     <property name="LOGGED_APPLICATION_NAME" value="[transaction-service-test] "/>
   </properties>
-  <testcase name="convertToBaseCurrency_ShouldUseCachedRate" classname="com.ebanking.unit.service.ExchangeRateServiceTest" time="0.297"/>
-  <testcase name="convertToBaseCurrency_NullAmount_ReturnsZero" classname="com.ebanking.unit.service.ExchangeRateServiceTest" time="0.006">
-    <system-out><![CDATA[08:31:07.862 [main] WARN  c.e.service.ExchangeRateService - Invalid parameters for currency conversion: amount=null, from=USD, to=GBP
+  <testcase name="shouldNotAuthenticateWhenAuthorizationHeaderIsMissing" classname="com.ebanking.unit.security.JwtAuthenticationFilterTest" time="0.332"/>
+  <testcase name="shouldAuthenticateUserWithValidJwtToken" classname="com.ebanking.unit.security.JwtAuthenticationFilterTest" time="0.006"/>
+  <testcase name="shouldContinueFilterChainWhenJwtServiceThrowsException" classname="com.ebanking.unit.security.JwtAuthenticationFilterTest" time="0.004">
+    <system-out><![CDATA[08:31:07.423 [main] ERROR c.e.security.JwtAuthenticationFilter - JWT authentication failed: JWT parsing error
 ]]></system-out>
   </testcase>
-  <testcase name="convertToBaseCurrency_DifferentDate_UsesDifferentCacheKey" classname="com.ebanking.unit.service.ExchangeRateServiceTest" time="0.004"/>
-  <testcase name="convertToBaseCurrency_ShouldRoundToTwoDecimalPlaces" classname="com.ebanking.unit.service.ExchangeRateServiceTest" time="0.003"/>
-  <testcase name="convertToBaseCurrency_SameCurrency_ReturnsOriginalAmount" classname="com.ebanking.unit.service.ExchangeRateServiceTest" time="0.002"/>
-  <testcase name="convertToBaseCurrency_NullFromCurrency_ReturnsOriginalAmount" classname="com.ebanking.unit.service.ExchangeRateServiceTest" time="0.002">
-    <system-out><![CDATA[08:31:07.877 [main] WARN  c.e.service.ExchangeRateService - Invalid parameters for currency conversion: amount=100.00, from=null, to=GBP
-]]></system-out>
-  </testcase>
-  <testcase name="convertToBaseCurrency_VerySmallAmount_HandlesCorrectly" classname="com.ebanking.unit.service.ExchangeRateServiceTest" time="0.004"/>
-  <testcase name="convertToBaseCurrency_NegativeAmount_ReturnsNegativeConvertedAmount" classname="com.ebanking.unit.service.ExchangeRateServiceTest" time="0.002"/>
-  <testcase name="convertToBaseCurrency_LargeAmount_HandlesCorrectly" classname="com.ebanking.unit.service.ExchangeRateServiceTest" time="0.003"/>
-  <testcase name="convertToBaseCurrency_NullToCurrency_ReturnsOriginalAmount" classname="com.ebanking.unit.service.ExchangeRateServiceTest" time="0.003">
-    <system-out><![CDATA[08:31:07.894 [main] WARN  c.e.service.ExchangeRateService - Invalid parameters for currency conversion: amount=100.00, from=USD, to=null
-]]></system-out>
-  </testcase>
-  <testcase name="convertToBaseCurrency_CaseInsensitiveCurrency_Works" classname="com.ebanking.unit.service.ExchangeRateServiceTest" time="0.005"/>
-  <testcase name="convertToBaseCurrency_ValidConversion_ReturnsConvertedAmount" classname="com.ebanking.unit.service.ExchangeRateServiceTest" time="0.004"/>
-  <testcase name="clearCache_ShouldClearCache" classname="com.ebanking.unit.service.ExchangeRateServiceTest" time="0.004"/>
+  <testcase name="shouldNotAuthenticateWhenJwtTokenIsInvalid" classname="com.ebanking.unit.security.JwtAuthenticationFilterTest" time="0.004"/>
 </testsuite>

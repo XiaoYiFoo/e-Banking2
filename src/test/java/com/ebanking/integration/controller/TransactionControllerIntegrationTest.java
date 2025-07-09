@@ -176,11 +176,13 @@ class TransactionControllerIntegrationTest {
         mockMvc.perform(get("/api/v1/transactions/account/TEST123456")
                         .header("Authorization", "Bearer " + authToken))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$").isArray())
-                .andExpect(jsonPath("$[0].id").value(transaction.getId()))
-                .andExpect(jsonPath("$[0].accountIban").value("TEST123456"))
-                .andExpect(jsonPath("$[0].currency").value("MYR"))
-                .andExpect(jsonPath("$[0].amount").value(100.00));
+                .andExpect(jsonPath("$.transactions").isArray())
+                .andExpect(jsonPath("$.transactions[0].id").value(transaction.getId()))
+                .andExpect(jsonPath("$.transactions[0].accountIban").value("TEST123456"))
+                .andExpect(jsonPath("$.transactions[0].currency").value("MYR"))
+                .andExpect(jsonPath("$.transactions[0].amount").value(100.00))
+                .andExpect(jsonPath("$.totalCredit").value(100.00))
+                .andExpect(jsonPath("$.totalDebit").value(0));
     }
 
     @Test
@@ -195,6 +197,7 @@ class TransactionControllerIntegrationTest {
                 .valueDate(LocalDate.now())
                 .description("Test transaction")
                 .build();
+        transactionRepository.save(transaction);
         transactionRepository.save(transaction);
 
         // When & Then
@@ -215,8 +218,10 @@ class TransactionControllerIntegrationTest {
         mockMvc.perform(get("/api/v1/transactions/account/TEST123456")
                         .header("Authorization", "Bearer " + authToken))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$").isArray())
-                .andExpect(jsonPath("$").isEmpty());
+                .andExpect(jsonPath("$.transactions").isArray())
+                .andExpect(jsonPath("$.transactions").isEmpty())
+                .andExpect(jsonPath("$.totalCredit").value(0))
+                .andExpect(jsonPath("$.totalDebit").value(0));
     }
 
     @Test

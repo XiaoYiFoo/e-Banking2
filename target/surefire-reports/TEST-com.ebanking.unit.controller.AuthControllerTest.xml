@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.ebanking.unit.service.ExchangeRateServiceTest" time="0.353" tests="13" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.ebanking.unit.controller.AuthControllerTest" time="1.676" tests="8" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="20"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -66,26 +66,70 @@
     <property name="CONSOLE_LOG_PATTERN" value="%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"/>
     <property name="LOGGED_APPLICATION_NAME" value="[transaction-service-test] "/>
   </properties>
-  <testcase name="convertToBaseCurrency_ShouldUseCachedRate" classname="com.ebanking.unit.service.ExchangeRateServiceTest" time="0.297"/>
-  <testcase name="convertToBaseCurrency_NullAmount_ReturnsZero" classname="com.ebanking.unit.service.ExchangeRateServiceTest" time="0.006">
-    <system-out><![CDATA[08:31:07.862 [main] WARN  c.e.service.ExchangeRateService - Invalid parameters for currency conversion: amount=null, from=USD, to=GBP
+  <testcase name="shouldReturn400WhenLoginRequestIsMissingRequiredFields" classname="com.ebanking.unit.controller.AuthControllerTest" time="1.351">
+    <system-out><![CDATA[08:31:03.950 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  org.apache.kafka.clients.Metadata - [Consumer clientId=consumer-transaction-group-4, groupId=transaction-group] Cluster ID: 9T85XrVRRCua3MJ3EDMvhA
+08:31:03.951 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-transaction-group-4, groupId=transaction-group] Discovered group coordinator localhost:9092 (id: 2147483646 rack: null)
+08:31:03.953 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-transaction-group-4, groupId=transaction-group] (Re-)joining group
+08:31:04.365 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-transaction-group-4, groupId=transaction-group] Request joining group due to: need to re-join with the given member-id: consumer-transaction-group-4-4bec048a-99b3-4f81-9fca-38122f1f7804
+08:31:04.365 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-transaction-group-4, groupId=transaction-group] Request joining group due to: rebalance failed due to 'The group member needs to have a valid member id before actually entering a consumer group.' (MemberIdRequiredException)
+08:31:04.366 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-transaction-group-4, groupId=transaction-group] (Re-)joining group
+08:31:04.974 [main] INFO  o.s.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+08:31:04.974 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+08:31:04.979 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 5 ms
+08:31:05.025 [main] WARN  c.e.exception.GlobalExceptionHandler - Validation failed: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.ebanking.dto.LoginResponse> com.ebanking.controller.AuthController.login(com.ebanking.dto.LoginRequest) with 2 errors: [Field error in object 'loginRequest' on field 'password': rejected value [null]; codes [NotBlank.loginRequest.password,NotBlank.password,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.password,password]; arguments []; default message [password]]; default message [Password is required]] [Field error in object 'loginRequest' on field 'password': rejected value [null]; codes [NotEmpty.loginRequest.password,NotEmpty.password,NotEmpty.java.lang.String,NotEmpty]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.password,password]; arguments []; default message [password]]; default message [Password cannot be empty]] 
 ]]></system-out>
   </testcase>
-  <testcase name="convertToBaseCurrency_DifferentDate_UsesDifferentCacheKey" classname="com.ebanking.unit.service.ExchangeRateServiceTest" time="0.004"/>
-  <testcase name="convertToBaseCurrency_ShouldRoundToTwoDecimalPlaces" classname="com.ebanking.unit.service.ExchangeRateServiceTest" time="0.003"/>
-  <testcase name="convertToBaseCurrency_SameCurrency_ReturnsOriginalAmount" classname="com.ebanking.unit.service.ExchangeRateServiceTest" time="0.002"/>
-  <testcase name="convertToBaseCurrency_NullFromCurrency_ReturnsOriginalAmount" classname="com.ebanking.unit.service.ExchangeRateServiceTest" time="0.002">
-    <system-out><![CDATA[08:31:07.877 [main] WARN  c.e.service.ExchangeRateService - Invalid parameters for currency conversion: amount=100.00, from=null, to=GBP
+  <testcase name="shouldReturn409WhenCustomerAlreadyExists" classname="com.ebanking.unit.controller.AuthControllerTest" time="0.096">
+    <system-out><![CDATA[08:31:05.166 [main] INFO  o.s.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+08:31:05.166 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+08:31:05.167 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 1 ms
+08:31:05.219 [main] INFO  c.ebanking.controller.AuthController - Attempting registration for customer: existinguser
+08:31:05.237 [main] WARN  c.e.exception.GlobalExceptionHandler - Illegal argument: Customer with ID 'existinguser' already exists
 ]]></system-out>
   </testcase>
-  <testcase name="convertToBaseCurrency_VerySmallAmount_HandlesCorrectly" classname="com.ebanking.unit.service.ExchangeRateServiceTest" time="0.004"/>
-  <testcase name="convertToBaseCurrency_NegativeAmount_ReturnsNegativeConvertedAmount" classname="com.ebanking.unit.service.ExchangeRateServiceTest" time="0.002"/>
-  <testcase name="convertToBaseCurrency_LargeAmount_HandlesCorrectly" classname="com.ebanking.unit.service.ExchangeRateServiceTest" time="0.003"/>
-  <testcase name="convertToBaseCurrency_NullToCurrency_ReturnsOriginalAmount" classname="com.ebanking.unit.service.ExchangeRateServiceTest" time="0.003">
-    <system-out><![CDATA[08:31:07.894 [main] WARN  c.e.service.ExchangeRateService - Invalid parameters for currency conversion: amount=100.00, from=USD, to=null
+  <testcase name="shouldReturn400WhenLoginRequestHasEmptyCustomerId" classname="com.ebanking.unit.controller.AuthControllerTest" time="0.03">
+    <system-out><![CDATA[08:31:05.260 [main] INFO  o.s.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+08:31:05.260 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+08:31:05.260 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 0 ms
+08:31:05.271 [main] WARN  c.e.exception.GlobalExceptionHandler - Validation failed: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.ebanking.dto.LoginResponse> com.ebanking.controller.AuthController.login(com.ebanking.dto.LoginRequest) with 3 errors: [Field error in object 'loginRequest' on field 'customerId': rejected value []; codes [NotEmpty.loginRequest.customerId,NotEmpty.customerId,NotEmpty.java.lang.String,NotEmpty]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.customerId,customerId]; arguments []; default message [customerId]]; default message [Customer ID cannot be empty]] [Field error in object 'loginRequest' on field 'customerId': rejected value []; codes [NotBlank.loginRequest.customerId,NotBlank.customerId,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.customerId,customerId]; arguments []; default message [customerId]]; default message [Customer ID is required]] [Field error in object 'loginRequest' on field 'customerId': rejected value []; codes [Size.loginRequest.customerId,Size.customerId,Size.java.lang.String,Size]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.customerId,customerId]; arguments []; default message [customerId],2147483647,1]; default message [Customer ID must not be empty]] 
 ]]></system-out>
   </testcase>
-  <testcase name="convertToBaseCurrency_CaseInsensitiveCurrency_Works" classname="com.ebanking.unit.service.ExchangeRateServiceTest" time="0.005"/>
-  <testcase name="convertToBaseCurrency_ValidConversion_ReturnsConvertedAmount" classname="com.ebanking.unit.service.ExchangeRateServiceTest" time="0.004"/>
-  <testcase name="clearCache_ShouldClearCache" classname="com.ebanking.unit.service.ExchangeRateServiceTest" time="0.004"/>
+  <testcase name="shouldReturn400WhenLoginRequestHasEmptyPassword" classname="com.ebanking.unit.controller.AuthControllerTest" time="0.031">
+    <system-out><![CDATA[08:31:05.293 [main] INFO  o.s.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+08:31:05.294 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+08:31:05.294 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 0 ms
+08:31:05.304 [main] WARN  c.e.exception.GlobalExceptionHandler - Validation failed: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.ebanking.dto.LoginResponse> com.ebanking.controller.AuthController.login(com.ebanking.dto.LoginRequest) with 3 errors: [Field error in object 'loginRequest' on field 'password': rejected value []; codes [NotBlank.loginRequest.password,NotBlank.password,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.password,password]; arguments []; default message [password]]; default message [Password is required]] [Field error in object 'loginRequest' on field 'password': rejected value []; codes [NotEmpty.loginRequest.password,NotEmpty.password,NotEmpty.java.lang.String,NotEmpty]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.password,password]; arguments []; default message [password]]; default message [Password cannot be empty]] [Field error in object 'loginRequest' on field 'password': rejected value []; codes [Size.loginRequest.password,Size.password,Size.java.lang.String,Size]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.password,password]; arguments []; default message [password],2147483647,1]; default message [Password must not be empty]] 
+]]></system-out>
+  </testcase>
+  <testcase name="shouldRegisterSuccessfullyWithValidData" classname="com.ebanking.unit.controller.AuthControllerTest" time="0.041">
+    <system-out><![CDATA[08:31:05.326 [main] INFO  o.s.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+08:31:05.326 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+08:31:05.327 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 0 ms
+08:31:05.343 [main] INFO  c.ebanking.controller.AuthController - Attempting registration for customer: newuser
+08:31:05.345 [main] INFO  c.ebanking.controller.AuthController - Successfully registered customer: newuser
+]]></system-out>
+  </testcase>
+  <testcase name="shouldReturn401WhenCredentialsAreInvalid" classname="com.ebanking.unit.controller.AuthControllerTest" time="0.051">
+    <system-out><![CDATA[08:31:05.368 [main] INFO  o.s.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+08:31:05.369 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+08:31:05.369 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 0 ms
+08:31:05.389 [main] INFO  c.ebanking.controller.AuthController - Attempting login for customer: sherry
+08:31:05.391 [main] WARN  c.ebanking.controller.AuthController - Bad credentials for customer: sherry
+08:31:05.392 [main] WARN  c.e.exception.GlobalExceptionHandler - Bad credentials: Bad credentials
+]]></system-out>
+  </testcase>
+  <testcase name="shouldLoginSuccessfullyWithValidCredentials" classname="com.ebanking.unit.controller.AuthControllerTest" time="0.031">
+    <system-out><![CDATA[08:31:05.423 [main] INFO  o.s.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+08:31:05.424 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+08:31:05.424 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 0 ms
+08:31:05.433 [main] INFO  c.ebanking.controller.AuthController - Attempting login for customer: sherry
+]]></system-out>
+  </testcase>
+  <testcase name="shouldReturn400WhenRegisterRequestIsMissingRequiredFields" classname="com.ebanking.unit.controller.AuthControllerTest" time="0.026">
+    <system-out><![CDATA[08:31:05.453 [main] INFO  o.s.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+08:31:05.453 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+08:31:05.453 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 0 ms
+08:31:05.459 [main] WARN  c.e.exception.GlobalExceptionHandler - Validation failed: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.ebanking.domain.Customer> com.ebanking.controller.AuthController.register(com.ebanking.dto.RegisterRequest): [Field error in object 'registerRequest' on field 'password': rejected value [null]; codes [NotBlank.registerRequest.password,NotBlank.password,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [registerRequest.password,password]; arguments []; default message [password]]; default message [Password is required]] 
+]]></system-out>
+  </testcase>
 </testsuite>

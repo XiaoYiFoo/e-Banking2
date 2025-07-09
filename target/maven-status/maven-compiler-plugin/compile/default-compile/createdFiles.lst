@@ -1,6 +1,5 @@
 com\ebanking\dto\ErrorResponse$ErrorResponseBuilder.class
 com\ebanking\service\KafkaTransactionConsumer.class
-com\ebanking\controller\TestController.class
 com\ebanking\exception\GlobalExceptionHandler.class
 com\ebanking\dto\ErrorResponse$ValidationError.class
 com\ebanking\domain\Transaction$TransactionBuilder.class
@@ -9,14 +8,11 @@ com\ebanking\service\TransactionService.class
 com\ebanking\config\KafkaConfig.class
 com\ebanking\TransactionServiceApplication.class
 com\ebanking\dto\AddTransactionResponse$AddTransactionResponseBuilder.class
-com\ebanking\dto\TransactionResponse.class
 com\ebanking\service\ExchangeRateService.class
 com\ebanking\security\CustomerUserDetailsService.class
 com\ebanking\dto\AddTransactionResponse.class
 com\ebanking\dto\ErrorResponse.class
 com\ebanking\domain\Transaction.class
-com\ebanking\dto\TransactionRequest$TransactionRequestBuilder.class
-com\ebanking\dto\TransactionRequest.class
 com\ebanking\config\SecurityConfig.class
 com\ebanking\security\JwtAuthenticationFilter.class
 com\ebanking\security\JwtService.class
@@ -24,5 +20,4 @@ com\ebanking\config\WebConfig.class
 com\ebanking\controller\TransactionController.class
 com\ebanking\repository\TransactionRepository.class
 com\ebanking\service\KafkaTransactionProducer.class
-com\ebanking\dto\TransactionResponse$TransactionResponseBuilder.class
 com\ebanking\config\OpenApiConfig.class
