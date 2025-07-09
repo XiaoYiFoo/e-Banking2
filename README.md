@@ -36,28 +36,6 @@ A modern banking backend built with Java and Spring Boot. This service provides 
 - Docker (for containerization)
 - (Optional) Kubernetes (for orchestration)
 
-### Running Locally
-
-1. **Clone the repository:**
-   ```sh
-   git clone <repository-url>
-   cd eBanking2
-   ```
-2. **Build the project:**
-   ```sh
-   mvn clean package
-   ```
-3. **Run with Docker Compose:**
-   ```sh
-   docker-compose up --build
-   ```
-4. **Or run locally:**
-   ```sh
-   mvn spring-boot:run
-   ```
-
----
-
 ## API Documentation
 
 Once running, access the interactive API docs at:
